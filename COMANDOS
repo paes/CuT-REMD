@@ -1,0 +1,3 @@
+echo "rm remd*Ttraj*"
+echo "rm gdt-total_Ttraj.*.dat"
+echo "rm rmsd-total_Ttraj*.dat"

@@ -1,0 +1,43 @@
+#!/bin/bash
+
+TEMPLIST=`cat temperatures.dat`
+
+
+for sm in 001 002 003 004 005 ; do
+for T in $TEMPLIST ; do
+		  cpptraj $1.prmtop <<EOF
+		trajin remd_001_small_$sm.ncdf.001 remdtraj remdtrajtemp $T
+		trajout remd_001_small_$sm.Ttraj.$T
+		go
+EOF
+done
+
+done
+
+
+
+for co in 002 003 004 005 006; do
+#for co in 006 ; do
+#echo "oláaáááá"
+#if $co = 001 ;
+#echo "oláaáááá"
+for T in $TEMPLIST ; do
+		  cpptraj $1.prmtop <<EOF
+		trajin remd_$co.ncdf.001 remdtraj remdtrajtemp $T
+		trajout remd_$co.Ttraj.$T
+		go
+EOF
+done
+done
+
+
+#for co in 006 ; do
+#for T in $TEMPLIST ; do
+ #                 cpptraj $1.prmtop <<EOF
+  #              trajin remd_teste.ncdf.001 remdtraj remdtrajtemp $T
+   #             trajout remd_$co.Ttraj.$T
+    #            go
+#EOF
+#done
+#done
+
