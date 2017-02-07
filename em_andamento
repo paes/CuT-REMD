@@ -1,0 +1,206 @@
+
+
+
+\item get_from_tra.x \\
+Script para capturar modelo de número específico dentre um arquivo pdb multi modelos. Usualmente utilizada para, de posse do aqruivo pdb da estrutura de referência, capturar o primeiro modelo.
+
+\item remove_heatoms.py \\
+Script utilizado para remover átomos de hidrogênio.
+
+\item Analyze_all_temps.x \\
+
+Ao passo que uma simulação REMD se desenvolve, quando da aceitação de permuta entre duas réplicas, ao invés de haver a troca de conformações entre uma simulação sendo executada a temperatura A e uma simulação sendo executada a uma temperatura B, o código do AMBER troca somente um valor, a temperatura. Assim sendo, temos ganho computacional e, como consequencia, geram-se trajetórias multiplexadas, ou seja, que possuem estruturas provenientes de simulações em banhos térmicos diferentes.
+
+
+As trajetórias de simulações REMD necessitam, portanto, passarem por uma demultiplexação: processo para transformar as trajetórias em trajetórias compostas por estruturas geradas sob a mesma temperatura. É isso que Analyze_all_temps.x faz: transforma as trajetórias multiplexadas geradas em trajetórias demultiplexadas. Utiliza o módulo cpptraj do AMBER.
+
+
+\item generate_pdb_total.x \\
+Script criado para unificar as trajetórias de mesma temperatura executadas com raios de corte diferente, respeitando a sequencia temporal em que foram geradas.  Utiliza o módulo cpptraj do AMBER.  
+
+\item rmsd_from_traj.x \\
+Script criado para calcular rmsd entre as trajetórias geradas e a estrutura de referência. Utiliza o módulo cpptraj do AMBER.
+
+\item gdt_from_traj.x\\
+Script criado para calcular GDT entre as trajetórias geradas e a estrutura de referência. Utiliza o software ClusCo REF.
+
+\item compute_energies.x \\
+Script responsável pelo cálculo de energias das simulações e geração de gráficos. Quando executado em simulações REMD, gera também gráficos relativos a probabilidade de distribuição canônica gerada pelas simulações.
+
+\item EF.py \\
+Script gerado para contabilzar a quantidade de Eventos de Funelamento ou Funneling Events da simulação.
+
+
+
+
+a partir daqui em ordem alfabética.
+\item boxplot_gdt.sh \\ Script para geração de gráficos GDT, com todas as temperaturas e de toda trajetória.
+\item boxplot_rmsd.sh \\ Script para geração de gráficos RMSD, com todas as temperaturas  e de toda trajetória.
+\item Calcula_Ranges_GDT.sh \\ Script para geração de gráficos GDT dividido em faixas de 0.1.
+\item Calcula_Ranges_RMSD.sh \\ Script para geração de gráficos RMSD dividido em faixas 1.0 Angstroms.
+\item clusterize.x \\ Script para automatização da clusterização. Uma vez que trabalha com muitos cálculos, se utiliza do módulo cpptraj compilado com Open MP.
+\item computa_LN_distrib.sh \\ Computa a distribuição de energia potencial de cada par de temperaturas adjacentes. Utiliza como entrada os arquivos gerados pelo script energydistribution.py.
+
+\item compute_convergence.py \\ deletar?
+\item compute_folded.py \\ Script para contabilização de estuturas tidas como enoveladas.
+
+\item compute_gdt.py \\ Avalia arquivos .gdt.dat (réplicas) e retorna um arquivo com Temperature(T) LowestValue(LV) LowerQuartile(Q1) MiddleQuartile(Q2) HigherQuartile(Q3) e HighestValue(HV)
+
+\item compute_rmsd.py \\ Avalia arquivos .rmsd.dat (réplicas) e retorna um arquivo com Temperature(T) LowestValue(LV) LowerQuartile(Q1) MiddleQuartile(Q2) HigherQuartile(Q3) e HighestValue(HV)
+
+\item convergence_plot_1UNC_avg.sh \\ Geração gráficos da média de convergência entre 3 execuções
+\item convergence_plot_1UNC.sh \\ Geração de gráficos de convergência. Utiliza saídas do software ENCORE.
+
+\item correlation.py \\ Script criado para avaliar o coeficiente de correlação entre curvas, mais especificamente entre o slope teórico de uma distribuição de Boltzmann e o slope retornado pelas simulações executadas na tese.
+
+\item create_plots_relative_metrics.x \\ Cria gráficos de RMSD/GDT comparando CuT-REMD, REMD, Cu-MD e DM. 
+\item dssp_go_1unc.py \\ Calcula a adequação de resíduos quanto a estrutura secundária, com base em estrutura pdb de referência. Se utiliza do cpptraj e software DSSP. 
+\item dssp_go.x \\ Utiliza-se do software DSSP para computar, para a trajetória completa, o DSSP de cada snapshot.
+\item dssp_plot.sh \\ Gera gráficos referentes a DSSP. 
+\item folded_plot.sh \\ Gera gráficos referentes a estruturas tidas como enoveladas ou folded. 
+\item gdt_min_avg.sh \\ Gera gráficos da média de GDT mínimos obtida em 3 execuções diferentes.
+\item gdt_min.sh \\ Script para computar GDT mínimos atingidos pelas simulações.
+\item gdt_ranges.py \\ Script utilizado para gerar matrizes relativos aos intervalos de GDT.
+\item generate_ncdf_total.x \\  Script para transformar trajetórias do AMBER em trajetórias binárias (ncdf).
+\item graph_gdt_ranges_new.x \\ Gera gráficos de intervalos de GDT.
+\item Map_allinone_Encore.sh \\ Gera mapas 6x6 provenientes do ENCORE.
+\item radgyr-fromTtraj_md.x \\ Contabiliza o raio de giro de simulações por DM.
+\item radgyr_fromTtraj.x\\ Contabiliza o raio de giro de simulações REMD.
+\item run_EF.sh \\ Executa cálculo de EF baseado em arquivos .log
+\item top5.sh \\ Script para calcular BestClus e BestStru.
+\item verify_distribution.sh \\ Script para computar distribuição de energia.
+\item verify_errors.sh \\ Script para contabilizar o erro entre slopes teóricos e os obtidos pelas simulações.
+
+separar em modulos
+modulo de execucao
+modulo de analise
+dentro do modulo de execucao temos gtk-remd inteiro.
+
+
+
+
+
+GTK-REMD
+Figuras? achei. estao na pasta.
+
+
+GTK-REMD: tela de configuração de simulações. 
+
+
+As figuras tal apresentam as telas existentes na interface gráfica GTK-REMD. GTK-REMD foi escrito na linguagem Python e utiliza-se do conjunto de ferramentas GTK+, o qual prove widgets mais sofisticados e interface amigavel. 
+
+A interface gráfica GTK-REMD é divida em duas abas: 
+begin enumerate
+]item Configuracao de Simulacoes
+Esta aba foi criada no intuito de facilitar a execucao de simulacoes, uma vez que possibilita a configuracao e geracao de arquivos de saída das mesmas. Por meio da aba "Simulation Setup" é possivel configurar não apenas simulacoes do tipo CuT-REMD como também simulacoes convencionais REMD, além de simulacoes Cu-MD e simulacoes por DM convencional. 
+
+As  entradas requisitadas por GTK-REMD para gerar os arquivos base das simulacoes sao: (i) identificador (ii) sequencia primária da proteina, (iii) tipo de simulacao (CuT-REMD, REMD, Cu-MD ou DM), (iv) numero aleatório, (v) estrutura de referencia, (vi) intervalo de temperaturas e (vii) quantidade de atomos na proteína.
+
+O sistema é bem adaptado para automatizar também a estipulação da quantidade e valores de temperaturas a serem utilizadas, baseando-se na quantidade de átomos do sistema, e em extremos de temperatura estipulados pelo usuário. Para isso a ferramenta GTK-REMD se vale de integração online com o webserver de JOAO.
+
+No caso de simulações Cu-MD ou por DM convencional, são preparados X sistemas independentes onde X é o número de temperaturas de interesse.
+
+Fica a cargo do usuário estipular, para cada simulaçao, o tempo de simulação, quantidade de tentativas de permuta e raios de corte. Sendo facilitada a criação de simulações que sejam formadas por pequenas sequencias de execucao (caso de CuT-REMD)
+
+GTK-REMD está, na presente versão, também adaptado para simulações envolvendo infraestrutura de cluster e execucões MPI.
+
+
+Os requisitos de software para rodar GTK-REMD sao ....
+
+
+
+gtk tela de analises
+
+A segunda aba presente na interface gráfica GTK-REMD é a de análises ou "Analysis". Nela é possível preparar uma gama de análises a serem feitas em momento posterior a execucao das dinâmicas. 
+
+Tais análises estão divididas em 3 grupos:
+\begin{enumerate} 
+\item Análises de metricas absolutas:
+begin{itemize}
+\item DopeScore (Modeller) \item GFactor (Procheck) \item ProbScore  \end{itemize}
+
+\item Análises de métricas relativas:
+begin{itemize}
+\item GDT_TS \item RMSD \item QCS
+\end{itemize}
+
+\item Análises quanto a amostragem:
+begin{itemize}
+\item Ráio de Giro \item Eventos de Funelamento \item Energia Potencial
+\end{itemize}
+\end{enumerate}
+
+
+
+--------------------------
+ANALYSIS
+
+\subsection{Assessment of Boltzmann distribution}
+As a novel method, it is important to analyze the simulations to assess whether the generated outputs follow a Boltzmann distribution, which grants ergodicity (capacity of the system to reach any region of the configuration space from any other region). In a system that satisfies the DBC, it is imposed that every elementary permutation needs to balance with a corresponding inverse procedure. Therefore, in theory, CuT- REMD maintains the probability of exchange expressed by Equation 1, thus preserving detailed balance. Consequently, the ensembles generated by CuT-REMD are expected to follow a Boltzmann distribution. To verify that, we computed the probability distribution of the potential energy, which partially overlap, considering two adjacent temperatures. Their ratio must comply with Equation 3 \cite{RN1341,RN1398}:
+
+Equacao LN
+
+The cutoff radii affects the system ́s energy strongly. Because we are using cutoffs shorter than the standard, it is possible that thermal equilibration be inhibited, thus corrupting conformational sampling. Since conventional T-REMD is widely tested and used, we performed comparisons between its potential energy distributions and those of CuT-REMD to weigh our method’s behavior. Varying cutoffs also affect the range of energies accessible by the system. Therefore, it would be improper for comparison to aggregate distributions of potential energies originated from different cutoff simulations. Consequently, the probability distributions were computed collecting only energies originated from simulations with the same cutoff. We applied Equation 3 using a 1 kcal/mol bin to compute P(E) of CuT-REMD and standard REMD simulations to test for canonical equilibrium.
+
+To provide a quantitative measure of the difference between simulations against the theoretical slope expected for a Boltzmann distribution, we first fitted a line to the points defined by pairs of adjacent temperatures and computed its slope. The average correlation coefficients between the obtained slope and the slope expected from Equation 3 was computed.
+
+
+
+\subsection{Potential Energy Overlap}
+Assuming two different REMD simulations with the same temperature range, it is possible to quantify their similarity by computing the overlap between each pair of distributions at the same temperature, thus making it possible to verify if two different simulation inputs (e.g. different simulation protocols) lead to different energy landscape sampling or not. Moreover, the same measure can be used to evaluate reproducibility in different runs. Overlap is computed by the Bhattacharyya coefficient\cite{RN1327} presented below (Equation 4). An overlap value of 1 means two identical distributions and an overlap value of 0 means completely distinct distributions.
+
+
+OVERLAP EQUATION
+
+We first computed the overlap among simulations that varies only by seed number to perform verification of reproducibility (Section 3.2). Then, we computed the overlap among different simulations protocols to evaluate diversity of the accessed energy space (Section 3.3).
+
+
+\subsubsection{Monte Carlo Acceptance Ratios}
+The exchange acceptance ratio (EAR) is expressed as the ratio between the number of accepted moves and the total number of exchange attempts. It can be used to adjust the temperature range. This ratio is generally computed with neighboring replicas in the ladder, amongst which exchanges are allowed. While some works ignore this restriction aiming to accelerate sampling88 89 -90, others optimize EAR on the fly 91.
+For REMD simulations, a common practice is to choose the temperature range in a way that the lowest temperature is below the temperature of interest, and the highest is above the folding temperature, following an exponential distribution of temperatures 92. For simulations applied to the PSP problem, however, this information is not always available and computing EAR can play an important role in determining the need for more replicas/temperatures to achieve a suitable span of the phase space.
+Another important parameter to analyze is the exchange trapping ratio (ETR), a concept recently introduced by Sindhikara et al.79. ETR quantifies the fraction of exchanges that occur when the new temperature is the same as it was two exchanges before (Tn = Tn−2). If a replica continuously oscillates between two neighboring temperatures, the system becomes locally trapped and will not span the phase space adequately, needing more simulation time to traverse energy barriers. We computed ETR for all temperatures individually to understand specific contributions.
+
+
+
+\subsubsection{Tunneling Events}
+
+Tunneling events (TEs) is the number of times the simulation goes from the lowest temperature through the highest and back to the lowest. The number of TEs in a system denotes its speed of diffusion in temperature space and is consequently indicative of configurational sampling efficiency 93 94-95. TE time is the average time it takes a replica to move from lowest temperature T1 to the highest temperature TN and back. For a fixed simulation time, lower amounts of TE time means better sampling. We computed the average TE time for all different simulations protocols.
+
+
+
+\subsubsection{Convergence}
+Assessing convergence is a key step in MD simulations analyses, especially when one expects a proper sampling that follows a Boltzmann distribution. A feasible approach would be to monitor the degree of convergence of the different visited conformations 96. Since CuT-REMD aims to predict the 3D structure of proteins rapidly (i.e. simulations no longer than 50 ns), the analyses described here took into account a fixed simulation time. The python package ENCORE was used to quantify the difference between the full trajectory and an incremental size time-window in order to compute how quickly the different tested protocols converge 97. We computed the similarity between ensembles using DRES, which uses a pairwise RMSD distance matrix as input to project the high-dimensional conformational ensemble into a low- dimensional space. Each ensemble has its probability distribution computed, followed by calculation of the Jensen-Shannon divergence between ensembles. For more details about DRES, see Lindorff-Larsen and Ferkinghoff-Borg 98.
+
+
+2.4.6. SSEs Formation and Folded Structures
+SSEs were determined using the program DSSP 99. For 1UNC, we considered its three α-helices of sizes 6 (H1: Ile3 to Gln8), 6 (H2: Pro14 to Ala 19)) and 10 (H3: Arg22 to Glu31), totaling 22 residues in regular secondary structures. A SSE was assigned as correct if, for each snapshot among the triplicate simulations of each protocol (Table 1), at least 80% of its residues agreed with the SSEs in the reference structure (first model in the NMR structure 1UNC). Simulated structures were counted as ‘‘folded’’ when their Cα RMSD, for residues Ile3 to Gly33, were within 3.5 Å from the reference NMR structure and contained the correct assignment of SSEs.
+
+
+2.4.7. RMSD and GDT-TS computation
+To evaluate the ability of our method to sample native-like conformations, the root mean square deviation (RMSD) and the global distance test total score (GDT-TS1\cite{RN1311}) were used as measures of structural similarity between predicted structures and the experimentally determined structure (PDB ID: 1UNC). These analyses used a common reference (the first model in the experimental NMR structure). The RMSD score (in Å) expresses how distant a predicted conformation is from its native structure. The smaller the RMSD the more similar are the structures compared. Conversely, the more different are the compared structures. The GDT-TS score lays in the range 0.0 to 1.0, where 0.0 means the compared structures are completely unrelated and 1.0 means they are identical. A value greater than 0.8 means a high- quality model\ cite{RN1311}. The RMSD was calculated using the CA trace of core residues (residues Ile3 to Gly33) and GDT-TS considered all residues.
+
+
+
+2.4.8.Clustering and performance evaluation protocol
+Only trajectories for the lowest four temperatures were used as input for the clustering protocol. Clusters were computed via cpptraj102 using the average-linkage hierarchical agglomerative algorithm103, with the standard ε value of 2104,105. When clustering, the algorithm took into account only amino acids residues within the SSEs present in the NMR reference structure. This is a common procedure aimed at avoiding disordered loops and terminal residues from disrupting the clusters58.
+To evaluate the performance of CuT-REMD against the standard methods regarding their ability to predict native-like structures, we calculated the metrics Best5Pop and BestStruc58. Best5Pop examines the five most populated clusters, computing the RMSD of their centroids against the reference experimental structure and returns the centroid structure with the lowest RMSD. BestStruc returns the predicted structure with lowest RMSD visited in the entire simulation, including trajectories excluded from the clustering.
+
+
+----------
+
+Explicar os arquivos gerados pelos métodos dentro de GTK-REMD.
+Pegar código GTK-REMD e destrinchar um pouco, vendo o que ele tem nos SOURCE e o que ele gera. Além daqueles setup_remd_all_inputs.x que nao está aqui.
+
+Fazer entao um modelinho, no papel primeiramente, com tudo isso.
+Com os métodos e os arquivos que ele prepara, para colocar junto da parte que fala da primeira ABA do GTK-REMD.
+
+Fazer o mesmo para a segunda parte, das analises, explicando os arquivos que ele gera, muitos já foram descritos na suite ct-remd, acho que isso pode ser verdade para o de cima tb.
+
+Depois, de posse dessas duas mini arquiteturas, posso, quem sabe, querer gerar uma unificada, colocando o AMBER junto, o AMBERTOOLS, os WEBSERVERS, o CLUSTER, Banco de dados que usamos para os calculos de energia. algo assim. isso é trabalhoso!
+
+Temos a interface, dentro dela os modulos de preparacao de analise e preparacao de simulacao, entao temos 2 quadrados que sao englobados por outro maior.
+dali temos a saída de dados que gera as inputs todas
+temos a conversa com o PDB para a estrutura 3d, e de input temos tambem a sequencia de aas, temos um webserver pra calcular a qtde de temperaturas, temos o cluster pra rodar as simulacoes
+creio que é isso, a arquitetura geral do negocio. O BD de energia vai aparecer só la quando for descrever o modulo de energia dentro das analises, mas aqui sera abstraido.
+alem disso temos tb o core do AMBER, dentro dele temos código CUT_REMD, acho que é isso. assim fica bom. esse vai ser legal de fazer, com entrada de info e saida. o dificil vai ser o outros dois que sao mais especificos e menos abstraidos.
+
